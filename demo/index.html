@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>jquery.dataTree</title>
+		<link href='http://fonts.googleapis.com/css?family=Tenor+Sans' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="index-src/main.css">
+		<script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
+		<script src="src/jquery.dataTree.min.js"></script>
+		<script>
+		$(function () {
+			$('#tree').dataTree();
+			$('#football').dataTree({
+				delimeter: '-',
+				openCSS: 'open2',
+				closedCSS: 'closed2',
+				endCSS: 'end2',
+				opened: ['eng-epl', 'sco']
+			});
+		});
+		</script>
+		<style>
+			#tree {
+				list-style-type:none;
+				color: #666666;
+			}
+			#tree [data-tree-click] {
+				cursor: pointer;
+				color: #999999;
+				font-weight: bold;
+				font-size: 1.2em;
+			}
+			#tree .closed [data-tree-click]{
+				padding-left: 12px;
+				background-image: url('src/plus_minus.gif');
+				background-repeat: no-repeat;
+				background-position: 0px 6px;
+				color: #FF00000 !important;
+			}
+			#tree .open [data-tree-click]{
+				padding-left: 12px;
+				background-image: url('src/plus_minus.gif');
+				background-repeat: no-repeat;
+				background-position: 0px -94px;
+				color: #FF00000 !important;
+			}
+			#tree .end {
+				padding-left: 12px;
+				color: #BBBBBB;
+			}
+			#tree .data-tree-level1 {
+				margin-left: 10px;
+			}
+			#tree .data-tree-level2 {
+				margin-left: 20px;
+			}
+			#tree .data-tree-level3 {
+				margin-left: 30px;
+			}
+			
+			#football {
+				color: #333333;
+			}
+			#football .open2 {
+				text-transform: uppercase;
+				font-weight: bold;
+			}
+			#football [data-tree-branch]{
+				display: block;
+			}
+			#football .data-tree-level1 {
+				margin-left: 20px;
+			}
+			#football .data-tree-level2 {
+				margin-left: 40px;
+			}
+			#football .data-tree-level3 {
+				margin-left: 60px;
+			}
+			#football .end2.data-tree-level0, #football .end2.data-tree-level1 {
+				color: #CCCCCC;
+			}
+			#football .end2.data-tree-level2 {
+				color: #CC0000;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container">
+			<header>
+				<span class="version">jquery.dataTree plugin: Version 1.0</span>
+				<h1>jquery.dataTree</h1>
+				<h2>Author: <a href="https://github.com/gar-cad" rel="author">Gareth Cadwaladr</a></h2>
+			</header>
+			<ol>
+				<li><a href="#basic">Basic use</a></li>
+				<li><a href="#parameters">Using parameters</a></li>
+			</ol>
+			<section class="example" id="basic">
+				<h1>Basic use</h1>
+				<h2>Example</h2>
+				<section class="display">
+					<ul id="tree">
+						<li data-tree-branch="1"><span data-tree-click="1">1</span> - Chapter 1</li>
+						<li data-tree-branch="1.1"><span data-tree-click="1.1">1.1</span> - Chapter 1, Subchapter 1</li>
+						<li data-tree-branch="1.1.1"><span data-tree-click="1.1.1">1.1.1</span> - Chapter 1, Subchapter 1, Page 1</li>
+						<li data-tree-branch="1.1.2"><span data-tree-click="1.1.2">1.1.2</span> - Chapter 1, Subchapter 1, Page 2</li>
+						<li data-tree-branch="1.1.2.1"><span data-tree-click="1.1.2.1">1.1.2.1</span> - Chapter 1, Subchapter 1, Page 2, Paragraph 1</li>
+						<li data-tree-branch="1.2"><span data-tree-click="1.2">1.2</span> - Chapter 1, Subchapter 2</li>
+						<li data-tree-branch="1.3"><span data-tree-click="1.3">1.3</span> - Chapter 1, Subchapter 3</li>
+						<li data-tree-branch="1.3.1"><span data-tree-click="1.3.1">1.3.1</span> - Chapter 1, Subchapter 3, Page 1</li>
+						<li data-tree-branch="2"><span data-tree-click="2">2</span> - Chapter 2</li>
+						<li data-tree-branch="2.1"><span data-tree-click="2.1">2.1</span> - Chapter 2, Subchapter 1</li>
+						<li data-tree-branch="2.2"><span data-tree-click="2.2">2.2</span> - Chapter 2, Subchapter 2</li>
+						<li data-tree-branch="2.2.1"><span data-tree-click="2.2.1">2.2.1</span> - Chapter 2, Subchapter 2, Page 1</li>
+						<li data-tree-branch="2.2.2"><span data-tree-click="2.2.2">2.2.2</span> - Chapter 2, Subchapter 2, Page 2</li>
+						<li data-tree-branch="2.3"><span data-tree-click="2.3">2.3</span> - Chapter 2, Subchapter 3</li>
+						<li data-tree-branch="3"><span data-tree-click="3">3</span> - Chapter 3</li>
+					</ul>
+				</section>
+				<h2>html</h2>
+				<section class="code">
+					<code>
+						&lt;ul id="tree"&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;li data-tree-branch="1"&gt;&lt;span data-tree-click="1"&gt;1&lt;/span&gt; - Chapter 1&lt;/li&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;li data-tree-branch="1.1"&gt;&lt;span data-tree-click="1.1"&gt;1.1&lt;/span&gt; - Chapter 1, Subchapter 1&lt;/li&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;li data-tree-branch="1.1.1"&gt;&lt;span data-tree-click="1.1.1"&gt;1.1.1&lt;/span&gt; - Chapter 1, Subchapter 1, Page 1&lt;/li&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;li data-tree-branch="1.1.2"&gt;&lt;span data-tree-click="1.1.2"&gt;1.1.2&lt;/span&gt; - Chapter 1, Subchapter 1, Page 2&lt;/li&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;li data-tree-branch="1.1.2.1"&gt;&lt;span data-tree-click="1.1.2.1"&gt;1.1.2.1&lt;/span&gt; - Chapter 1, Subchapter 1, Page 2, Paragraph 1&lt;/li&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;li data-tree-branch="1.2"&gt;&lt;span data-tree-click="1.2"&gt;1.2&lt;/span&gt; - Chapter 1, Subchapter 2&lt;/li&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;li data-tree-branch="1.3"&gt;&lt;span data-tree-click="1.3"&gt;1.3&lt;/span&gt; - Chapter 1, Subchapter 3&lt;/li&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;li data-tree-branch="1.3.1"&gt;&lt;span data-tree-click="1.3.1"&gt;1.3.1&lt;/span&gt; - Chapter 1, Subchapter 3, Page 1&lt;/li&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;li data-tree-branch="2"&gt;&lt;span data-tree-click="2"&gt;2&lt;/span&gt; - Chapter 2&lt;/li&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;li data-tree-branch="2.1"&gt;&lt;span data-tree-click="2.1"&gt;2.1&lt;/span&gt; - Chapter 2, Subchapter 1&lt;/li&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;li data-tree-branch="2.2"&gt;&lt;span data-tree-click="2.2"&gt;2.2&lt;/span&gt; - Chapter 2, Subchapter 2&lt;/li&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;li data-tree-branch="2.2.1"&gt;&lt;span data-tree-click="2.2.1"&gt;2.2.1&lt;/span&gt; - Chapter 2, Subchapter 2, Page 1&lt;/li&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;li data-tree-branch="2.2.2"&gt;&lt;span data-tree-click="2.2.2"&gt;2.2.2&lt;/span&gt; - Chapter 2, Subchapter 2, Page 2&lt;/li&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;li data-tree-branch="2.3"&gt;&lt;span data-tree-click="2.3"&gt;2.3&lt;/span&gt; - Chapter 2, Subchapter 3&lt;/li&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;li data-tree-branch="3"&gt;&lt;span data-tree-click="3"&gt;3&lt;/span&gt; - Chapter 3&lt;/li&gt;<br>
+						&lt;/ul&gt;
+					</code>
+				</section>
+				<h2>javascript</h2>
+				<section class="code">
+					<code>
+						&lt;script src="http://code.jquery.com/jquery-2.0.1.min.js">&lt;/script&gt;<br>
+						&lt;script src="src/jquery.dataTree.min.js"&gt;&lt;/script&gt;<br>
+						&lt;script&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;$(function () {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$('#tree').dataTree();<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;});<br>
+						&lt;/script&gt;<br>
+					</code>
+				</section>
+				<h2>css</h2>
+				<section class="code">
+					<code>
+						#tree {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;list-style-type:none;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;color: #666666;<br>
+						}<br>
+						#tree [data-tree-click] {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;cursor: pointer;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;color: #999999;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;font-weight: bold;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;font-size: 1.2em;<br>
+						}<br>
+						#tree .closed [data-tree-click]{<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;padding-left: 12px;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;background-image: url('pix/plus_minus.gif');<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;background-repeat: no-repeat;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;background-position: 0px 6px;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;color: #FF00000 !important;<br>
+						}<br>
+						#tree .open [data-tree-click]{<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;padding-left: 12px;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;background-image: url('pix/plus_minus.gif');<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;background-repeat: no-repeat;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;background-position: 0px -94px;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;color: #FF00000 !important;<br>
+						}<br>
+						#tree .end {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;padding-left: 12px;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;color: #BBBBBB;<br>
+						}<br>
+						#tree .data-tree-level1 {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;margin-left: 10px;<br>
+						}<br>
+						#tree .data-tree-level2 {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;margin-left: 20px;<br>
+						}<br>
+						#tree .data-tree-level3 {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;margin-left: 30px;<br>
+						}
+					</code>
+				</section>	
+				<a href="#container" class="topLink">Top of page</a>
+			</section>
+			<section class="example" id="parameters">
+				<h1>Using parameters (also can be any html element)</h1>
+				<h2>Example</h2>
+				<section class="display">
+					<div id="football">
+						<span data-tree-branch="eng" data-tree-click="eng">England</span>
+						<span data-tree-branch="eng-epl" data-tree-click="eng-epl">Premier League</span>
+						<span data-tree-branch="eng-epl-arse" data-tree-click="eng-epl-arse">Arsenal</span>
+						<span data-tree-branch="eng-epl-villa" data-tree-click="eng-epl-villa">Aston Villa</span>
+						<span data-tree-branch="eng-epl-cdff" data-tree-click="eng-epl-cdff">Cardiff</span>
+						<span data-tree-branch="eng-epl-lpool" data-tree-click="eng-epl-lpool">Liverpool</span>
+						<span data-tree-branch="eng-epl-city" data-tree-click="eng-epl-city">Manchester City</span>
+						<span data-tree-branch="eng-epl-utd" data-tree-click="eng-epl-utd">Manchester United</span>
+						<span data-tree-branch="eng-chm" data-tree-click="eng-chm">Championship</span>
+						<span data-tree-branch="eng-chm-brig" data-tree-click="eng-chm-brig">Brighton</span>
+						<span data-tree-branch="eng-chm-leic" data-tree-click="eng-chm-leic">Leicester</span>
+						<span data-tree-branch="eng-chm-forest" data-tree-click="eng-chm-forest">Nottingham Forest</span>
+						<span data-tree-branch="eng-chm-wat" data-tree-click="eng-chm-wat">Watford</span>
+						<span data-tree-branch="eng-lg1" data-tree-click="eng-lg1">League 1</span>
+						<span data-tree-branch="eng-lg2" data-tree-click="eng-lg2">League 2</span>
+						<span data-tree-branch="eng-lg2-chest" data-tree-click="eng-lg2-chest">Chesterfield</span>
+						<span data-tree-branch="eng-lg2-york" data-tree-click="eng-lg2-york">York</span>
+						<span data-tree-branch="sco" data-tree-click="sco">Scotland</span>
+						<span data-tree-branch="sco-spl" data-tree-click="sco-spl">Scottish Premier League</span>
+						<span data-tree-branch="sco-spl-aber" data-tree-click="sco-spl-aber">Aberdeen</span>
+						<span data-tree-branch="sco-spl-cel" data-tree-click="sco-spl-cel">Celtic</span>
+						<span data-tree-branch="sco-spl-utd" data-tree-click="sco-spl-utd">Dundee United</span>
+						<span data-tree-branch="sco-spl-hearts" data-tree-click="sco-spl-hearts">Hearts</span>
+						<span data-tree-branch="sco-spl-hibs" data-tree-click="sco-spl-hibs">Hibernian</span>
+						<span data-tree-branch="sco-div1" data-tree-click="sco-div1">Scottish First DIvision</span>
+						<span data-tree-branch="sco-div2" data-tree-click="sco-div2">Scottish Second DIvision</span>
+					</div>
+				</section>
+				<h2>html</h2>
+				<section class="code">
+					<code>
+						&lt;div id="football"&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;span data-tree-branch="eng" data-tree-click="eng"&gt;England&lt;/span&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;span data-tree-branch="eng-epl" data-tree-click="eng-epl"&gt;Premier League&lt;/span&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;span data-tree-branch="eng-epl-arse" data-tree-click="eng-epl-arse"&gt;Arsenal&lt;/span&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;span data-tree-branch="eng-epl-villa" data-tree-click="eng-epl-villa"&gt;Aston Villa&lt;/span&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;span data-tree-branch="eng-epl-cdff" data-tree-click="eng-epl-cdff"&gt;Cardiff&lt;/span&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;span data-tree-branch="eng-epl-lpool" data-tree-click="eng-epl-lpool"&gt;Liverpool&lt;/span&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;span data-tree-branch="eng-epl-city" data-tree-click="eng-epl-city"&gt;Manchester City&lt;/span&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;span data-tree-branch="eng-epl-utd" data-tree-click="eng-epl-utd"&gt;Manchester United&lt;/span&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;span data-tree-branch="eng-chm" data-tree-click="eng-chm"&gt;Championship&lt;/span&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;span data-tree-branch="eng-chm-brig" data-tree-click="eng-chm-brig"&gt;Brighton&lt;/span&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;span data-tree-branch="eng-chm-leic" data-tree-click="eng-chm-leic"&gt;Leicester&lt;/span&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;span data-tree-branch="eng-chm-forest" data-tree-click="eng-chm-forest"&gt;Nottingham Forest&lt;/span&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;span data-tree-branch="eng-chm-wat" data-tree-click="eng-chm-wat"&gt;Watford&lt;/span&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;span data-tree-branch="eng-lg1" data-tree-click="eng-lg1"&gt;League 1&lt;/span&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;span data-tree-branch="eng-lg2" data-tree-click="eng-lg2"&gt;League 2&lt;/span&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;span data-tree-branch="eng-lg2-chest" data-tree-click="eng-lg2-chest"&gt;Chesterfield&lt;/span&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;span data-tree-branch="eng-lg2-york" data-tree-click="eng-lg2-york"&gt;York&lt;/span&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;span data-tree-branch="sco" data-tree-click="sco"&gt;Scotland&lt;/span&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;span data-tree-branch="sco-spl" data-tree-click="sco-spl"&gt;Scottish Premier League&lt;/span&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;span data-tree-branch="sco-spl-aber" data-tree-click="sco-spl-aber"&gt;Aberdeen&lt;/span&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;span data-tree-branch="sco-spl-cel" data-tree-click="sco-spl-cel"&gt;Celtic&lt;/span&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;span data-tree-branch="sco-spl-utd" data-tree-click="sco-spl-utd"&gt;Dundee United&lt;/span&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;span data-tree-branch="sco-spl-hearts" data-tree-click="sco-spl-hearts"&gt;Hearts&lt;/span&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;span data-tree-branch="sco-spl-hibs" data-tree-click="sco-spl-hibs"&gt;Hibernian&lt;/span&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;span data-tree-branch="sco-div1" data-tree-click="sco-div1"&gt;Scottish First DIvision&lt;/span&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;span data-tree-branch="sco-div2" data-tree-click="sco-div2"&gt;Scottish Second DIvision&lt;/span&gt;<br>
+						&lt;/div&gt;
+					</code>
+				</section>
+				<h2>javascript</h2>
+				<section class="code">
+					<code>
+						&lt;script src="http://code.jquery.com/jquery-2.0.1.min.js">&lt;/script&gt;<br>
+						&lt;script src="src/jquery.dataTree.min.js"&gt;&lt;/script&gt;<br>
+						&lt;script&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;$(function () {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$('#football').dataTree({<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;delimeter: '-',<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;openCSS: 'open2',<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;closedCSS: 'closed2',<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;endCSS: 'end2',<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;opened: ['eng-epl', 'sco']<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;});<br>
+						&lt;/script&gt;<br>
+					</code>	
+				</section>
+				<h2>css</h2>
+				<section class="code">
+					<code>
+						#football {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;color: #333333;<br>
+						}<br>
+						#football .open2 {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;text-transform: uppercase;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;font-weight: bold;<br>
+						}<br>
+						#football [data-tree-branch]{<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;display: block;<br>
+						}<br>
+						#football .data-tree-level1 {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;margin-left: 20px;<br>
+						}<br>
+						#football .data-tree-level2 {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;margin-left: 40px;<br>
+						}<br>
+						#football .data-tree-level3 {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;margin-left: 60px;<br>
+						}<br>
+						#football .end2.data-tree-level0, #football .end2.data-tree-level1 {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;color: #CCCCCC;<br>
+						}<br>
+						#football .end2.data-tree-level2 {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;color: #CC0000;<br>
+						}
+					</code>
+				</section>
+				<a href="#container" class="topLink">Top of page</a>
+			</section>
+			<footer>
+				&copy; 2013 Gareth Cadwaladr
+			</footer>
+		</div>
+	</body>
+</html>
